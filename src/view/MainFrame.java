@@ -1,6 +1,6 @@
 package view;
 
-import model.Gallery;
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 
@@ -28,8 +28,9 @@ public class MainFrame extends JFrame implements GalleryObserver ,GalleryViewUpd
 
  public MainFrame(){
     
-    galleryController = new GalleryController(new Gallery()); 
+    galleryController =GalleryController.getInstance(); 
     galleryController.addObserver(this);
+   
     initGUI(); 
     
  }

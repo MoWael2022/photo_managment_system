@@ -34,7 +34,7 @@ public class searchGUI extends JPanel implements ActionListener {
     }
 
     private void initGUI() {
-        galleryController = new GalleryController(new Gallery());
+        galleryController = GalleryController.getInstance();
         
         setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20)); 
 
@@ -91,7 +91,6 @@ public class searchGUI extends JPanel implements ActionListener {
 
        }
        List<Photo> photo =  galleryController.searchPhotos(search, keyword);
-       System.out.println(photo);
        JPanel newResultPanel = images.uploadImagesPanel(photo,galleryController);
        newResultPanel.setPreferredSize(new Dimension(1200, 400));
        

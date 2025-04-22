@@ -27,7 +27,7 @@ public class AllImagePanel extends ImagePanel{
     @Override
     public JPanel panelLayout() {
        ImageComponent functions = new ImageComponent();
-       System.out.println(galleryController.getAllPhotos());
+    
        return functions.uploadImagesPanel(galleryController.getAllPhotos(), galleryController);
      
     }
