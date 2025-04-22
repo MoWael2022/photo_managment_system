@@ -9,13 +9,48 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Gallery {
+    private static Gallery instance;
 
     private Map<Integer,Photo> allphotos = new HashMap<>();
     private static int idCounter = 0; 
     private Set<String> tagsPhoto =new LinkedHashSet<>();
     private Set<String> locationPhoto = new LinkedHashSet<>();
     
+
+    public static Gallery getInstance() {
+        if (instance == null) {
+            instance = new Gallery();
+        }
+        return instance;
+    }
+
+
+    private void initData(){
+        AddImageToGallery("cairo" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+        AddImageToGallery("alex" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\Screenshot (1).png"),"2025-04-16","Screenshot (1).png");
+
+        AddImageToGallery("alex" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+
+        AddImageToGallery("alex" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+        AddImageToGallery("port" , "beach",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+        AddImageToGallery("port" , "skit",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+        AddImageToGallery("port" , "nature",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+        AddImageToGallery("port" , "sports",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+        AddImageToGallery("sharm" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+        AddImageToGallery("sharm" , "travilling",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+        AddImageToGallery("sharm" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+        AddImageToGallery("cairo" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+        AddImageToGallery("giza" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+        AddImageToGallery("cairo" , "food",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+        AddImageToGallery("giza" , "playing",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+        AddImageToGallery("cairo" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+        AddImageToGallery("giza" , "snowing",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+        AddImageToGallery("cairo" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
+
+    }
+
     public Gallery(){
+        initData();        
         updateTags(); 
         updateLocation(); 
     }
@@ -62,6 +97,7 @@ public class Gallery {
     }
 
     public List<Photo> searchImage (SearchType searchType , String query){
+       
         return searchType.getImages(getAllImages(), query); 
     }
 

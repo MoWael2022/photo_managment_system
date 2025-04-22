@@ -1,50 +1,32 @@
 package controller;
-
-
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-
 import core.GalleryObserver;
 import model.Gallery;
 import model.Photo;
 import model.SearchType; 
 
 public class GalleryController {
-    private Gallery gallery;
+
+    private static GalleryController instance ;
+
+    private Gallery gallery = Gallery.getInstance();
     private static final String DEFAULT_TAG = "nature";
     private static final String DEFAULT_LOCATION = "home";
 
-    private void initData(){
-        gallery.AddImageToGallery("cairo" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-        gallery.AddImageToGallery("alex" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\Screenshot (1).png"),"2025-04-16","Screenshot (1).png");
 
-        gallery.AddImageToGallery("alex" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
 
-        gallery.AddImageToGallery("alex" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-        gallery.AddImageToGallery("port" , "beach",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-        gallery.AddImageToGallery("port" , "skit",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-        gallery.AddImageToGallery("port" , "nature",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-        gallery.AddImageToGallery("port" , "sports",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-        gallery.AddImageToGallery("sharm" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-        gallery.AddImageToGallery("sharm" , "travilling",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-        gallery.AddImageToGallery("sharm" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-        gallery.AddImageToGallery("cairo" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-        gallery.AddImageToGallery("giza" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-        gallery.AddImageToGallery("cairo" , "food",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-        gallery.AddImageToGallery("giza" , "playing",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-        gallery.AddImageToGallery("cairo" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-        gallery.AddImageToGallery("giza" , "snowing",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-        gallery.AddImageToGallery("cairo" , "person",new File("C:\\Users\\Mohamed_Wael\\Pictures\\Screenshots\\ip.png"),"2025-04-16","ip");
-
+    public GalleryController() {
+        
     }
 
-    public GalleryController(Gallery gallery) {
-        this.gallery = gallery;
-        initData();
+    public static GalleryController getInstance(){
+        if (instance == null) {
+            instance = new GalleryController();
+        }
+        return instance; 
     }
 
   
@@ -70,6 +52,7 @@ public class GalleryController {
 
     public void addImage(File file, String tag, String location, String date, String name) {
         gallery.AddImageToGallery(location, tag, file, date, name);
+        notifyObserver();
     }
 
     public List<Photo> getPhotosByTag(String tag) {

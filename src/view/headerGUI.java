@@ -77,9 +77,13 @@ public JPanel header(GalleryController gallerycController,GalleryViewUpdater gal
 
     searchImagebutton.addActionListener(_ -> {
         galleryViewUpdater.showView(Constant.searchView);
+       
+
+        
     });
 
     galleryViewbutton.addActionListener(_ -> {
+        galleryViewUpdater.RefreshAllImage();
         galleryViewUpdater.showView(Constant.galleryView);
     });
 
